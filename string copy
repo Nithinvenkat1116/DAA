@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// Function to copy one string to another using recursion
+void copyString(char *source, char *destination, int index) {
+    // Base case: when the current character is '\0' (end of string)
+    if (source[index] == '\0') {
+        destination[index] = '\0'; // Add the null terminator to the destination string
+        return;
+    }
+
+    // Copy the current character from source to destination
+    destination[index] = source[index];
+
+    // Recursive call to copy the rest of the string
+    copyString(source, destination, index + 1);
+}
+
+int main() {
+    char source[100], destination[100];
+
+    // Get input from the user
+    printf("Enter a string: ");
+    scanf("%s", source);
+
+    // Copy the string using recursion
+    copyString(source, destination, 0);
+
+    // Print the original and copied strings
+    printf("Original String: %s\n", source);
+    printf("Copied String: %s\n", destination);
+
+    return 0;
+}
