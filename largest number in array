@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int findLargest(int arr[], int size) {
+    // Assume the first element is the largest
+    int largest = arr[0];
+
+    // Iterate through the array to find the largest element
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > largest) {
+            largest = arr[i];
+        }
+    }
+
+    return largest;
+}
+
+int main() {
+    // Example array
+    int arr[] = {10, 5, 8, 15, 7};
+
+    // Calculate the size of the array
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    // Find the largest number in the array
+    int result = findLargest(arr, size);
+
+    // Display the result
+    printf("The largest number in the array is: %d\n", result);
+
+    return 0;
+}
