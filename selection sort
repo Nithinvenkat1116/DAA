@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+// Function to find the index of the minimum element in the array
+int findMinIndex(int arr[], int start, int end) {
+    int minIndex = start;
+    
+    for (int i = start + 1; i <= end; i++) {
+        if (arr[i] < arr[minIndex]) {
+            minIndex = i;
+        }
+    }
+    
+    return minIndex;
+}
+
+// Function to perform selection sort using recursion
+void recursiveSelectionSort(int arr[], int start, int end) {
+    if (start < end) {
+        // Find the minimum element in the unsorted part
+        int minIndex = findMinIndex(arr, start, end);
+        
+        // Swap the minimum element with the first unsorted element
+        int temp = arr[start];
+        arr[start] = arr[minIndex];
+        arr[minIndex] = temp;
+
+        // Recursively sort the rest of the array
+        recursiveSelectionSort(arr, start + 1, end);
+    }
+}
+
+int main() {
+    // Example array
+    int arr[] = {64, 25, 12, 22, 11};
+
+    // Calculate the size of the array
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    // Perform selection sort using recursion
+    recursiveSelectionSort(arr, 0, size - 1);
+
+    // Display the sorted array
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
