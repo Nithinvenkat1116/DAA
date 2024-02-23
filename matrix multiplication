@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+// Function to perform matrix multiplication
+void multiplyMatrix(int firstMatrix[10][10], int secondMatrix[10][10], int result[10][10], int rowFirst, int columnFirst, int rowSecond, int columnSecond) {
+    // Check if matrix multiplication is possible
+    if (columnFirst != rowSecond) {
+        printf("Matrix multiplication is not possible.\n");
+        return;
+    }
+
+    // Initialize the result matrix with zeros
+    for (int i = 0; i < rowFirst; i++) {
+        for (int j = 0; j < columnSecond; j++) {
+            result[i][j] = 0;
+        }
+    }
+
+    // Perform matrix multiplication
+    for (int i = 0; i < rowFirst; i++) {
+        for (int j = 0; j < columnSecond; j++) {
+            for (int k = 0; k < columnFirst; k++) {
+                result[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
+            }
+        }
+    }
+}
+
+// Function to display a matrix
+void displayMatrix(int matrix[10][10], int row, int col) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    // Example matrices
+    int firstMatrix[10][10] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int secondMatrix[10][10] = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+    int resultMatrix[10][10];
+
+    // Dimensions of the matrices
+    int rowFirst = 3, columnFirst = 3, rowSecond = 3, columnSecond = 3;
+
+    // Perform matrix multiplication
+    multiplyMatrix(firstMatrix, secondMatrix, resultMatrix, rowFirst, columnFirst, rowSecond, columnSecond);
+
+    // Display the matrices
+    printf("First Matrix:\n");
+    displayMatrix(firstMatrix, rowFirst, columnFirst);
+
+    printf("\nSecond Matrix:\n");
+    displayMatrix(secondMatrix, rowSecond, columnSecond);
+
+    printf("\nResult Matrix:\n");
+    displayMatrix(resultMatrix, rowFirst, columnSecond);
+
+    return 0;
+}
