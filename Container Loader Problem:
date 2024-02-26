@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+// Function to implement the container loader problem
+void containerLoader(int items[], int n, int containerCapacity) {
+    // Your implementation here
+}
+
+int main() {
+    int items[] = {5, 7, 2, 8, 4};  // Example items
+    int n = sizeof(items) / sizeof(items[0]);
+    int containerCapacity = 10;  // Example container capacity
+
+    containerLoader(items, n, containerCapacity);
+
+    return 0;
+}
