@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+// Function to check if a number is a perfect number
+int isPerfectNumber(int num) {
+    int sum = 1; // Initialize sum with 1 because every number is divisible by 1
+
+    // Iterate from 2 to the square root of num
+    for (int i = 2; i * i <= num; i++) {
+        // If i is a divisor of num
+        if (num % i == 0) {
+            sum += i; // Add divisor
+            if (i != num / i) {
+                sum += num / i; // Add the other divisor
+            }
+        }
+    }
+
+    // If the sum of divisors is equal to the original number, it is a perfect number
+    return (sum == num);
+}
+
+// Driver program to test the isPerfectNumber function
+int main() {
+    int num;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    if (isPerfectNumber(num)) {
+        printf("%d is a perfect number.\n", num);
+    } else {
+        printf("%d is not a perfect number.\n", num);
+    }
+
+    return 0;
+}
