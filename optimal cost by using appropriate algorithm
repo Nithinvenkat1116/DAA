@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure to represent tasks
+struct Task {
+    int start;
+    int end;
+};
+
+// Function to compare tasks based on their end times
+int compareTasks(const void* a, const void* b) {
+    return ((struct Task*)a)->end - ((struct Task*)b)->end;
+}
+
+// Function to find the optimal cost using a greedy algorithm
+int findOptimalCost(struct Task tasks[], int n) {
+    // Sort tasks based on their end times
+    qsort(tasks, n, sizeof(struct Task), compareTasks);
+
+    // Initialize variables
+    int optimalCost = 1;  // Assuming at least one task is present
+    int currentEnd = tasks[0].end;
+
+    // Iterate through the tasks
+    for (int i = 1; i < n; i++) {
+        // If the task doesn't overlap with the previous one, add it to the optimal schedule
+        if (tasks[i].start >= currentEnd) {
+            optimalCost++;
+            currentEnd = tasks[i].end;
+        }
+    }
+
+    return optimalCost;
+}
+
+int main() {
+    // Example: Tasks with start and end times
+  
