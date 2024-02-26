@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+// Function to implement the assignment problem using branch and bound
+void assignmentProblem(int costMatrix[][3], int n) {
+    // Your implementation here
+}
+
+int main() {
+    int costMatrix[3][3] = {{3, 2, 7}, {1, 9, 5}, {4, 6, 8}};  // Example cost matrix
+    int n = 3;  // Number of workers and tasks
+
+    assignmentProblem(costMatrix, n);
+
+    return 0;
+}
