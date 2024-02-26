@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define V 5  // Number of vertices in the graph
+
+void printSolution(int path[]);
+
+// Function to check if the current vertex can be added to the Hamiltonian Circuit
+bool isSafe(int v, int graph[V][V], int path[], int pos) {
+    if (graph[path[pos - 1]][v] == 0)
+        return false;
+
+    for (int i = 0; i < pos; i++)
+        if (path[i] == v)
+            return false;
+
+    return true;
+}
+
+// Recursive function to find Hamiltonian Circuit
+bool hamiltonianCircuitUtil(int graph[V][V], int path[], int pos) {
+    if (pos == V) {
+        // Check if there is an edge from the last vertex to the first vertex
+        if (graph[path[pos - 1]][path[0]] == 1)
+            return true;
+        else
+            return false;
+    }
+
+    for (int v = 1; v < V; v++) {
+        if (isSafe(v, graph, path, pos)) {
+            path[pos] = v;
+
+            if (hamiltonianCircuitUtil(graph, path, pos + 1) == true)
+                return true;
+
+            path[pos] = -1;
+        }
+    }
+
+    return false;
+}
+
+// Function to find Hamiltonian Circuit
+void hamiltonianCircuit(int graph[V][V]) {
+    int path[V];
+    for (int i = 0; i < V; i++)
+        path[i] = -1;
+
+    // Start from the first vertex (0 as the starting point)
+    path[0] = 0;
+
+    if (hamiltonianCircuitUtil(graph, path, 1) == false) {
+        printf("Hamiltonian Circuit does not exist.\n");
+        return;
+    }
+
+    printf("Hamiltonian Circuit exists. The circuit is:\n");
+    printSolution(path);
+}
+
+// Function to print the Hamiltonian Circuit
+void printSolution(int path[]) {
+    for (int i = 0; i < V; i++)
+        printf("%d ", path[i]);
+    printf("%d\n", path[0]);  // Print the first vertex again to show the complete cycle
+}
+
+int main() {
+    int graph[V][V] = {
+        {0, 1, 1, 1, 0},
+        {1, 0, 1, 0, 1},
+        {1, 1, 0, 1, 1},
+        {1, 0, 1, 0, 1},
+        {0, 1, 1, 1, 0}
+    };
+
+    hamiltonianCircuit(graph);
+
+    return 0;
+}
