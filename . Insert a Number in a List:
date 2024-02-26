@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+// Node structure for a linked list
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to insert a number in a linked list
+void insertNumber(struct Node** head, int num) {
+    // Your implementation here
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Insert numbers into the list
+    insertNumber(&head, 5);
+    insertNumber(&head, 10);
+    insertNumber(&head, 7);
+
+    // Display the updated list
+    // Your display function here
+
+    return 0;
+}
