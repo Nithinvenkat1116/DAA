@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Function to find the reverse of a number using recursion
+int reverseNumber(int num, int reversedNum) {
+    // Base case: when num becomes 0, return the reversed number
+    if (num == 0) {
+        return reversedNum;
+    }
+
+    // Extract the last digit from num
+    int lastDigit = num % 10;
+
+    // Append the last digit to the reversed number
+    reversedNum = reversedNum * 10 + lastDigit;
+
+    // Recursive call with the remaining digits
+    return reverseNumber(num / 10, reversedNum);
+}
+
+// Driver program to test the reverseNumber function
+int main() {
+    int num;
+    
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    int reversedNum = reverseNumber(num, 0);
+
+    printf("The reverse of %d is %d\n", num, reversedNum);
+
+    return 0;
+}
