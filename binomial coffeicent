@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+// Function to calculate factorial
+unsigned long long factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+// Function to calculate binomial coefficient
+unsigned long long binomialCoefficient(int n, int k) {
+    if (k < 0 || k > n) {
+        return 0;
+    }
+
+    return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+// Driver program to test above functions
+int main() {
+    int n = 5, k = 2;
+
+    printf("C(%d, %d) = %llu\n", n, k, binomialCoefficient(n, k));
+
+    return 0;
+}
