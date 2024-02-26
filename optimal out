@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <limits.h>
+
+// Function to calculate the optimal binary search tree cost
+int optimalBST(int keys[], int freq[], int n) {
+    int cost[n + 1][n + 1];
+
+    // Initialize the cost matrix
+    for (int i = 0; i < n; i++) {
+        cost[i][i] = freq[i];
+    }
+
+    // Calculate cost for chains of length 2 to n
+    for (int chainLen = 2; chainLen <= n; chainLen++) {
+        for (int i = 0; i <= n - chainLen + 1; i++) {
+            int j = i + chainLen - 1;
+            cost[i][j] = INT_MAX;
+
+            // Try making all keys in the range [i, j] as the root
+            for (int k = i; k <= j; k++) {
+                int rootCost = ((k > i) ? cost[i][k - 1] : 0) +
+                               ((k < j) ? cost[k + 1][j] : 0) +
+                               freq[k];
+
+                if (rootCost < cost[i][j]) {
+                    cost[i][j] = rootCost;
+                }
+            }
+        }
+    }
+
+    return cost[0][n - 1];
+}
+
+// Driver program to test above function
+int main() {
+    int keys[] = {10, 12, 20};
+    int freq[] = {34, 8, 50};
+    int n = sizeof(keys) / sizeof(keys[0]);
+
+    printf("Optimal Binary Search Tree Cost: %d\n", optimalBST(keys, freq, n));
+
+    return 0;
+}
