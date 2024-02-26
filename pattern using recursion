@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+// Function to print spaces
+void printSpaces(int n) {
+    if (n <= 0) {
+        return;
+    }
+
+    printf(" ");
+    printSpaces(n - 1);
+}
+
+// Function to print stars
+void printStars(int n) {
+    if (n <= 0) {
+        return;
+    }
+
+    printf("* ");
+    printStars(n - 1);
+}
+
+// Function to print a pyramid pattern using recursion
+void printPyramid(int n, int totalRows) {
+    if (n <= 0) {
+        return;
+    }
+
+    // Print spaces
+    printSpaces(totalRows - n);
+
+    // Print stars
+    printStars(n);
+
+    printf("\n");
+
+    // Recursive call for the next row
+    printPyramid(n - 1, totalRows);
+}
+
+// Driver program to test the printPyramid function
+int main() {
+    int rows;
+
+    printf("Enter the number of rows for the pyramid: ");
+    scanf("%d", &rows);
+
+    // Start printing the pyramid from the bottom
+    printPyramid(rows, rows);
+
+    return 0;
+}
